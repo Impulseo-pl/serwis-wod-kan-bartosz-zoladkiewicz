@@ -1940,3 +1940,281 @@ footer{view-transition-name:mt-foot}
 /* Kicker hero na waskim ekranie ma sie zawijac, a nie rozpychac strony w bok. */
 .hf-kicker{flex-wrap:wrap;row-gap:.4rem}
 @media(max-width:560px){.hf-kicker::before{width:24px}}
+
+/* ============================================================
+   NOWY PROJEKT (22.09.2026, prośba Szymona „zrób nowy projekt strony pod klienta").
+   Treść bez zmian, zmienia się wygląd: głęboki petrol + sygnałowy pomarańcz
+   (kolory służb technicznych), Archivo + Figtree, zaokrąglone karty,
+   hero dzielone: ciemny panel z telefonem po lewej, kadr po prawej.
+   Ta warstwa jest OSTATNIA i wygrywa ze wszystkim wyżej.
+   ============================================================ */
+:root{
+  --paper:#F6F4EF;
+  --paper-2:#ECE8DF;
+  --paper-3:#E3DED2;
+  --ink:#0D2B2F;
+  --ink-soft:#1E3D41;
+  --muted:#56686A;
+  --line:rgba(13,43,47,.13);
+  --accent:#B43F16;
+  --accent-d:#93320F;
+  --accent-soft:rgba(180,63,22,.10);
+  --accent-text:#93320F;
+  --dark:#0D2B2F;
+  --r-sm:8px; --r-md:14px; --r-lg:22px;
+  --font-display:'Archivo','Inter',sans-serif;
+  --font-body:'Figtree','Inter',sans-serif;
+}
+h1,h2,h3{font-weight:800;letter-spacing:-.028em}
+.btn{border-radius:999px}
+.eyebrow{color:var(--accent-text)}
+
+/* pasek nawigacji: nad zdjęciem przezroczysty jak dotąd, po przewinięciu jasny z pomarańczową kreską */
+.nav.nav-solid{border-bottom:3px solid var(--accent)}
+.brand .name{letter-spacing:.01em;text-transform:none;font-size:1.3rem}
+.brand .sub{color:var(--accent-text);font-weight:700;letter-spacing:.22em}
+
+/* HERO dzielone na dużym ekranie */
+@media(min-width:981px){
+  .hero-fach{background:var(--dark);align-items:stretch}
+  .hf-photo{left:auto;right:0;width:50%;border-radius:0 0 0 var(--r-lg)}
+  .hero-fach::after{inset:0 auto 0 50%;width:18%;
+    background:linear-gradient(90deg,rgba(13,43,47,.55),rgba(13,43,47,0))}
+  .hf-panel{display:flex;align-items:center;padding-top:clamp(3.2rem,7vh,5rem);padding-bottom:clamp(2rem,4vh,3rem)}
+  .hf-inner{max-width:min(44%,34rem);position:relative;padding-left:clamp(1.2rem,2vw,1.8rem);
+    border-left:4px solid var(--accent)}
+  .hf-title{font-size:clamp(2.4rem,1.5rem + 2.6vw,3.9rem)}
+  .hf-kicker,.hf-title,.hf-lead,.hf-phone,.hf-trust{text-shadow:none}
+}
+@media(max-width:980px){
+  .hero-fach::after{background:linear-gradient(178deg,rgba(13,43,47,.3) 0%,rgba(13,43,47,.66) 52%,rgba(13,43,47,.92) 100%)}
+}
+.hf-phone-num .ico-tel{color:var(--accent-lit)}
+.hf-trust{border-top-color:rgba(255,255,255,.2)}
+
+/* pas obietnic: pełny pomarańcz */
+.fach-promise{background:var(--accent);border-bottom:0}
+.fp-row li{color:#fff}
+.fp-row li:not(:last-child)::after{background:rgba(255,255,255,.7)}
+
+/* kafle usług: zaokrąglone, z pomarańczowym paskiem przy tytule */
+.gateway{border-radius:var(--r-lg);overflow:hidden}
+.gateway .g-ttl{font-weight:800}
+
+/* pasek awarii: petrol z pomarańczowym brzegiem */
+.awaria{background:var(--dark);border-left:10px solid var(--accent)}
+.awaria h3{font-weight:800}
+
+/* opinie: karty zamiast gołego tekstu */
+.opinie-mini{background:var(--paper-2)}
+.opinie-mini .om-item{background:var(--paper);border-radius:var(--r-md);padding:var(--space-5);border:1px solid var(--line)}
+.opinie-mini .om-item blockquote{font-size:var(--text-base);color:var(--ink)}
+.opinie-mini .om-autor{color:var(--accent-text)}
+
+/* „Zanim dojadę": karty z dużym numerem */
+.zanim{background:var(--paper)}
+.zn-list li{border-radius:var(--r-md);background:#fff;border-left:4px solid var(--accent)}
+.zn-no{color:var(--accent-text)}
+.zn-foto img{border-radius:var(--r-lg)}
+
+/* zdjęcia i karty w całej stronie: łagodniejsze narożniki */
+.faq-item{border-radius:var(--r-md)}
+footer{background:var(--dark);border-top:6px solid var(--accent)}
+
+/* telefon: hero razem z przyciskami ma się zmieścić nad dolnym paskiem „Zadzwoń" */
+@media(max-width:820px){
+  .hero-fach{min-height:calc(100svh - 132px)}
+  .hf-panel{padding-top:clamp(3.2rem,9vh,4.4rem);padding-bottom:1.6rem}
+  .hf-phone{margin:var(--space-4) 0 var(--space-4)}
+  .hf-title{margin:var(--space-3) 0}
+}
+
+/* ciemny pomarańcz = BIAŁY napis na przyciskach (wcześniejsze warstwy dawały ciemny tekst pod bursztyn) */
+.btn-accent,.btn-accent:hover,.nav .nav-links a.btn-accent,.nav .nav-links a.btn-accent:hover,
+.nav:not(.nav-solid) .nav-links a.btn-accent:hover,.btn-accent[data-accent-d],.cta-d .btn-accent,
+.sticky-call .sc-call{color:#fff}
+/* hero dzielone: tekst szerzej, tytuł niżej, żeby całość weszła w ekran 1440x900 */
+@media(min-width:981px){
+  .hf-photo{width:44%}
+  .hero-fach::after{inset:0 auto 0 56%}
+  .hf-inner{max-width:min(52%,40rem)}
+  .hf-title{font-size:clamp(2.2rem,1.3rem + 2.2vw,3.35rem);margin:var(--space-3) 0}
+  .hf-lead{font-size:1.05rem;line-height:1.55}
+  .hf-phone{margin:var(--space-4) 0 var(--space-4)}
+  .hf-phone-num{font-size:clamp(1.9rem,1.4rem + 1.6vw,2.6rem)}
+  .hf-trust{margin-top:var(--space-4);padding-top:var(--space-3)}
+  .hf-panel{padding-top:clamp(5rem,10vh,6rem);padding-bottom:clamp(1.4rem,3vh,2rem)}
+}
+/* marka w pasku bez ucinania: pełne nazwisko, podpis miejsca tylko na szerokim ekranie */
+@media(min-width:681px){
+  .nav .brand{flex:0 0 auto}
+  .nav .brand .name{font-size:1.2rem;letter-spacing:.07em;overflow:visible}
+  .nav .brand .sub{overflow:visible;letter-spacing:.12em}
+}
+@media(min-width:681px) and (max-width:1439px){.nav .brand .sub{display:none}}
+@media(min-width:681px) and (max-width:1100px){.nav .brand .name{font-size:1rem;letter-spacing:.04em}}
+@media(min-width:681px) and (max-width:960px){
+  .nav .nav-links{gap:.9rem;padding-right:14.5rem}
+  .nav .nav-links a:not(.btn){font-size:.8rem;letter-spacing:.04em}
+  .nav .brand .name{font-size:.9rem;letter-spacing:.02em}
+}
+@media(min-width:681px) and (max-width:790px){.nav .nav-links a[href="o-nas.html"]{display:none}}
+@media(min-width:681px) and (max-width:740px){.nav .nav-links a[href="realizacje.html"]{display:none}}
+
+/* ============================================================
+   PROJEKT 2 (22.09.2026, prośba Szymona „nowy projekt strony"): granat + żółć sygnałowa,
+   krój zwężony Barlow Condensed, ostre narożniki, pas „ostrzegawczy". Treść bez zmian.
+   ============================================================ */
+:root{
+  --paper:#F3F5F8;
+  --paper-2:#E6EBF1;
+  --paper-3:#DCE3EB;
+  --ink:#0B1B2E;
+  --ink-soft:#1C3150;
+  --muted:#4E5D70;
+  --line:rgba(11,27,46,.14);
+  --accent:#FFB81C;
+  --accent-d:#E9A300;
+  --accent-soft:rgba(255,184,28,.16);
+  --accent-text:#1C3150;
+  --accent-lit:#FFB81C;
+  --dark:#0B1B2E;
+  --navy-2:#12294A;
+  --r-sm:2px; --r-md:4px; --r-lg:6px;
+  --font-display:'Barlow Condensed','Arial Narrow',sans-serif;
+  --font-body:'Barlow','Inter',sans-serif;
+  --pas:repeating-linear-gradient(-45deg,var(--accent) 0 14px,var(--ink) 14px 28px);
+}
+body{background:var(--paper);color:var(--ink)}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;letter-spacing:.005em;line-height:1.02}
+h1,h2{text-transform:uppercase}
+h2{font-size:clamp(2.2rem,1.6rem + 2.4vw,3.4rem)}
+.eyebrow{color:var(--ink-soft);font-family:var(--font-display);font-weight:700;letter-spacing:.2em}
+.eyebrow::before{width:22px;height:6px;background:var(--accent);margin-top:.42em}
+
+/* przyciski: prostokątne, zwężone wersaliki, żółte z granatowym napisem */
+.btn{border-radius:var(--r-sm);font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:1rem}
+.btn-accent,.btn-accent:hover,.nav .nav-links a.btn-accent,.nav .nav-links a.btn-accent:hover,
+.nav:not(.nav-solid) .nav-links a.btn-accent,.nav:not(.nav-solid) .nav-links a.btn-accent:hover,
+.btn-accent[data-accent-d],.cta-d .btn-accent,.sticky-call .sc-call{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.btn-accent:hover{background:var(--accent-d)}
+.btn-ghost{border:2px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+.btn-light{background:var(--accent);color:var(--ink)}
+
+/* pasek nawigacji: zawsze granatowy, z żółtą kreską */
+.nav,.nav.nav-solid,.nav.is-stuck{background:var(--dark);backdrop-filter:none;border-bottom:3px solid var(--accent)}
+.nav::after{display:none}
+.nav .brand .name,.nav.nav-solid .brand .name{color:#fff;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.nav .brand .sub,.nav.nav-solid .brand .sub{color:var(--accent)}
+.nav .nav-links a:not(.btn-accent),.nav.nav-solid .nav-links a:not(.btn-accent){color:rgba(255,255,255,.86);font-family:var(--font-display);font-size:.95rem;letter-spacing:.12em}
+.nav .nav-links a:not(.btn-accent):hover,.nav .nav-links a.active:not(.btn-accent),
+.nav.nav-solid .nav-links a:not(.btn-accent):hover,.nav.nav-solid .nav-links a.active:not(.btn-accent){color:#fff}
+.nav .nav-links a:not(.btn-accent)::after,.nav.nav-solid .nav-links a:not(.btn-accent)::after{background:var(--accent);height:3px}
+.nav .nav-toggle span,.nav.nav-solid .nav-toggle span{background:#fff}
+.nav .nav-links a.btn-accent{font-family:var(--font-display);font-size:.9rem;border-radius:var(--r-sm)}
+@media(max-width:680px){
+  .nav .nav-links{background:var(--dark);border-bottom:3px solid var(--accent)}
+  .nav .nav-links a:not(.btn-accent){color:#fff;border-bottom-color:rgba(255,255,255,.12)}
+  .nav .nav-links a:not(.btn-accent):hover,.nav .nav-links a.active:not(.btn-accent){color:var(--accent)}
+}
+
+/* HERO: zdjęcie na całą szerokość, granatowy welon od lewej, pas ostrzegawczy na dole */
+.hero-fach{background:var(--dark)}
+.hero-fach::before{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--pas);z-index:2}
+.hf-kicker{display:inline-flex;background:var(--accent);color:var(--ink);padding:.4rem .75rem;letter-spacing:.16em;font-size:.82rem;text-shadow:none!important}
+.hf-kicker::before{display:none}
+.hf-title{text-transform:uppercase;font-weight:800;letter-spacing:0;line-height:.98}
+.hf-title em{color:var(--accent)}
+.hf-phone{background:rgba(11,27,46,.72);border:2px solid var(--accent);padding:.7rem 1.1rem .8rem;border-radius:var(--r-sm)}
+.hf-phone-lab{color:rgba(255,255,255,.8)}
+.hf-phone-num{color:#fff}
+.hf-phone-num .ico-tel{color:var(--accent)}
+.hf-phone:hover .hf-phone-num{color:var(--accent)}
+.hf-ghost{border:2px solid rgba(255,255,255,.7);color:#fff}
+.hf-ghost:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.hf-trust .ico-star{color:var(--accent)}
+@media(min-width:981px){
+  .hf-photo{left:0;right:0;width:100%;border-radius:0}
+  .hero-fach::after{inset:0;width:auto;
+    background:linear-gradient(90deg,rgba(11,27,46,.96) 0%,rgba(11,27,46,.9) 38%,rgba(11,27,46,.55) 62%,rgba(11,27,46,.12) 100%)}
+  .hf-inner{border-left:0;padding-left:0;max-width:min(56%,42rem)}
+  .hf-title{font-size:clamp(2.8rem,1.6rem + 3vw,4.4rem)}
+}
+@media(max-width:980px){
+  .hero-fach::after{background:linear-gradient(180deg,rgba(11,27,46,.35) 0%,rgba(11,27,46,.78) 48%,rgba(11,27,46,.96) 100%)}
+  .hf-title{font-size:clamp(2.3rem,1.6rem + 3.4vw,3.2rem)}
+}
+
+/* pas obietnic: granatowy, żółte znaczniki */
+.fach-promise{background:var(--navy-2);border-bottom:0}
+.fp-row li{color:#fff;font-family:var(--font-display);font-size:clamp(.85rem,1.4vw,1rem);letter-spacing:.12em}
+.fp-row li:not(:last-child)::after{width:8px;height:8px;border-radius:0;transform:rotate(45deg);background:var(--accent)}
+
+/* kafle usług: ostre, z żółtą belką pod tytułem */
+.gateways-band{background:var(--paper)}
+.gateway{border-radius:var(--r-md)}
+.gateway::after{background:linear-gradient(var(--accent),var(--accent)) left bottom/100% 6px no-repeat,linear-gradient(180deg,rgba(11,27,46,0) 35%,rgba(11,27,46,.92))}
+.gateway .g-ttl{font-family:var(--font-display);text-transform:uppercase;font-weight:700;font-size:1.6rem;letter-spacing:.02em}
+.gateway .g-ttl{text-shadow:0 1px 2px rgba(0,0,0,.6),0 2px 14px rgba(0,0,0,.45)}
+
+/* pasek awarii: żółty alarm z pasem ostrzegawczym */
+.awaria{background:var(--accent);color:var(--ink);border-left:0;position:relative}
+.awaria::before,.awaria::after{content:"";position:absolute;left:0;right:0;height:10px;background:var(--pas)}
+.awaria::before{top:0}.awaria::after{bottom:0}
+.awaria .wrap{padding-block:calc(var(--space-7) + 10px)}
+.awaria h3{color:var(--ink);font-family:var(--font-display);text-transform:uppercase;font-size:clamp(1.6rem,1.1rem + 1.6vw,2.4rem)}
+.awaria p{color:var(--ink);opacity:.88}
+.awaria .btn-accent,.awaria .btn-accent:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.awaria .btn-accent .ico-tel{color:var(--accent)}
+
+/* opinie skrótem: białe karty z żółtą górą */
+.opinie-mini{background:var(--paper-2)}
+.opinie-mini .om-item{background:#fff;border:0;border-top:5px solid var(--accent);border-radius:var(--r-md);box-shadow:0 10px 26px -18px rgba(11,27,46,.45)}
+.opinie-mini .om-autor{color:var(--ink-soft);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem}
+
+/* „Zanim dojadę": numery w żółtych klockach */
+.zn-list li{background:#fff;border-left:0;border-radius:var(--r-md);box-shadow:0 10px 26px -20px rgba(11,27,46,.5)}
+.zn-no{display:inline-block;background:var(--accent);color:var(--ink);font-family:var(--font-display);font-weight:800;padding:.1rem .5rem;border-radius:var(--r-sm)}
+.zn-list h3{text-transform:uppercase;letter-spacing:.02em}
+.zn-foto img{border-radius:var(--r-md)}
+.zn-stopka a{color:var(--ink);text-decoration-color:var(--accent);text-decoration-thickness:3px}
+
+/* proces: numery i kropki */
+.proces-line .pno{color:var(--ink);font-family:var(--font-display)}
+.proces-line li::after{background:var(--accent);border-radius:0;transform:rotate(45deg)}
+.proces-line h3{text-transform:uppercase;letter-spacing:.03em}
+.proc-count .pc-cur{color:var(--ink)}
+.proc-bar i{background:var(--accent)}
+
+/* lista usług */
+.fu-name{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.03em;font-size:1.3rem}
+.fu-cta{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:4px}
+.svc-row .num{display:inline-block;background:var(--accent);color:var(--ink);padding:.15rem .55rem;border-radius:var(--r-sm)}
+.svc-row h3{text-transform:uppercase;font-size:clamp(1.6rem,1.2rem + 1vw,2.2rem)}
+
+/* galeria, opinie, FAQ, obszar */
+.tile,.tile img,.op-card,.faq-item,.godz-box{border-radius:var(--r-md)}
+.op-card{border-top:5px solid var(--accent)}
+.faq-item summary{text-transform:uppercase;letter-spacing:.03em;font-size:1.15rem}
+.obszar-list li{border-radius:var(--r-sm);border:2px solid var(--line);font-family:var(--font-display);text-transform:uppercase;letter-spacing:.08em}
+.obszar-list li:hover{border-color:var(--ink);color:var(--ink)}
+.obszar-list li.is-home{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+
+/* podstrony: granatowy welon zamiast szarego */
+.pagehead::after{background:linear-gradient(180deg,rgba(11,27,46,.45),rgba(11,27,46,.9))}
+.pagehead::before{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:var(--pas);z-index:3}
+.pagehead .eyebrow{color:var(--accent)}
+.pagehead .eyebrow::before{background:var(--accent)}
+
+/* CTA i stopka */
+.cta{background:var(--navy-2)}
+.cta::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--pas);z-index:3}
+.cta .eyebrow{color:var(--accent)}
+.cta .btn-light,.cta .btn-light:hover{background:var(--accent);color:var(--ink)}
+.cta .btn-ghost-cta{border:2px solid rgba(255,255,255,.6);color:#fff}
+.cta .btn-ghost-cta:hover{background:#fff;color:var(--ink)}
+footer{background:#07131F;border-top:6px solid var(--accent)}
+footer .foot-brand .name{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.05em}
+footer h4{color:var(--accent)}
+.sticky-call .sc-quote{background:var(--dark);color:#fff}
